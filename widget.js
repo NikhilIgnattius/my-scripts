@@ -1,5 +1,5 @@
 // import biggerText from "./biggerText.js";
-import contrastChanger from "./contrastChanger.js";
+import contrastChanger from "https://nikhilignattius.github.io/my-scripts/contrastChanger.js";
 
 document.addEventListener("DOMContentLoaded", accessibilityButton);
 function print(message){
