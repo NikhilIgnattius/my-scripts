@@ -8,8 +8,6 @@ function accessibilityButton() {
     `.accessibility-button { height: 50px; width: 50px; position: fixed; right: 20px; bottom: 30px; z-index: 99999; transition: 0.3s; }`,
     `.accessibility-button:hover { transform: scale(1.2); }`,
     `iframe { position: fixed; right: 0; top: 0; width: 300px; height: 100vh; border: 2px solid #006be6; display: none; z-index: 99998; }`,
-    `.iframe-content { font-family: 'Poppins', serif; display: flex; justify-content: center; align-items: center; height: 100%; background-color: #eff1f5; }`,
-    `.iframe-content div { width: 80%; padding: 1em; background-color: white; border-radius: 16px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: center; }`
   ];
 
   cssRules.forEach((rule) => sheet.insertRule(rule, sheet.cssRules.length));
@@ -43,6 +41,9 @@ function accessibilityButton() {
   accessibilityButton.addEventListener("click", () => {
     isIframeVisible = !isIframeVisible;
     iframe.style.display = isIframeVisible ? "block" : "none";
+    iframe.style.height = "100vh";
+    iframe.style.width = "100vw"
+
   });
 }
 
