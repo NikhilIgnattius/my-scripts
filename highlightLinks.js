@@ -1,5 +1,5 @@
 export function highlightLinks() {
-  let isStyleApplied = false; // State to track if styles are currently applied
+  let isStyleApplied = false; 
 
   const toggleStyles = () => {
     const allLinks = document.querySelectorAll("a"); // Update the list of links dynamically
