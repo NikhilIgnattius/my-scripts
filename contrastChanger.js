@@ -3,7 +3,6 @@ const contrastModes = ["Invert", "Dark", "Light", "Reset"];
 
 export function contrastChanger() {
     currentContrastIndex = (currentContrastIndex+1) % contrastModes.length;
-    console.log(currentContrastIndex)
   function applyStyles(elements, styles) {
     elements.forEach((element) => {
         
@@ -110,8 +109,4 @@ export function contrastChanger() {
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
-
-  // Increment the index and cycle back if needed
-  
-  console.log("after",currentContrastIndex)
 }
