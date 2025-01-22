@@ -1,7 +1,6 @@
 // import biggerText from "./biggerText.js";
-import highlightLinks from "./highlightLinks.js";
-import contrastChanger from "./contrastChanger.js";
-
+import {contrastChanger} from "./contrastChanger.js";
+import {highlightLinks} from "./highlightLinks.js";
 
 document.addEventListener("DOMContentLoaded", accessibilityButton);
 function print(message){
