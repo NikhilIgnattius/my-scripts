@@ -33,22 +33,11 @@ function accessibilityButton() {
   // Creating the iframe
   const iframe = document.createElement("iframe");
   iframe.style.display = "none"; // Initially hidden
+  iframe.src = "./widget.js"
   document.body.appendChild(iframe);
 
   // Preload iframe content once
-  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-  iframeDoc.open();
-  iframeDoc.write(`
-    <html>
-      <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
-      </head>
-      <body>
-      </body>
-      <script src="https://nikhilignattius.github.io/my-scripts/widgetTest.js" type="module" defer></script>
-    </html>
-  `);
-  iframeDoc.close();
+  
 
   // Toggle iframe visibility on button click
   let isIframeVisible = false;
