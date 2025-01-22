@@ -35,6 +35,8 @@ export default function contrastChanger() {
 
   // Apply Invert filter
   if (contrastType === "Invert") {
+      let a = document.getElementByTagName("iframe");
+    console.log(a)
     const htmlElement = document.querySelector("html");
     htmlElement.style.filter = "invert(100%)";
   } else {
@@ -109,6 +111,5 @@ export default function contrastChanger() {
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
-  let a = document.getElementByTagName("iframe");
-    console.log(a)
+  
 }
