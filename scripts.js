@@ -1,7 +1,5 @@
-import {contrastChange} from "./contrastChanger.js";
-function contrastChanger() {
-  console.log("Contrast increased.");
-}
+import {contrastChanger} from "./contrastChanger.js";
+
 
 function highlightLinks() {
   console.log("Links highlighted.");
