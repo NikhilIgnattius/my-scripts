@@ -50,7 +50,7 @@ function accessibilityButton() {
         <html>
           <head>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
-            <script src="./widget.js" defer></script>
+            <script src="./widget.js" type="module" defer></script>
           </head>
           <body>
           </body>
