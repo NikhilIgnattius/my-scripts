@@ -2,14 +2,14 @@ let currentContrastIndex = -1;  // Start from the first contrast mode
 const contrastModes = ["Invert", "Dark", "Light", "Reset"];
 
 export default function contrastChanger() {
-    currentContrastIndex = (currentContrastIndex+1) % contrastModes.length;
+    currentContrastIndex = (currentContrastIndex + 1) % contrastModes.length;
 
     function applyStyles(elements, styles) {
         elements.forEach((element) => {
             // Skip iframe elements
-            console.log(element)
             if (element.tagName === 'IFRAME') return;
 
+            console.log(`Applying styles to:`, element);  // Debugging log
             for (let property in styles) {
                 element.style.setProperty(property, styles[property], "important");
             }
@@ -19,6 +19,7 @@ export default function contrastChanger() {
     function resetStyles() {
         const allElements = document.querySelectorAll("*");
         allElements.forEach((element) => {
+            // Skip iframe elements
             if (element.tagName === 'IFRAME') return;
 
             element.style.removeProperty("color");
@@ -36,6 +37,7 @@ export default function contrastChanger() {
 
     // Handle the "Reset" contrast type directly
     if (contrastType === "Reset") {
+        console.log('Resetting contrast styles');
         return;
     }
 
@@ -43,6 +45,7 @@ export default function contrastChanger() {
     if (contrastType === "Invert") {
         const htmlElement = document.querySelector("html");
         htmlElement.style.filter = "invert(100%)";
+        console.log('Applied invert filter');
     } else {
         const themes = {
             Dark: {
@@ -80,7 +83,7 @@ export default function contrastChanger() {
             document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, li, span, ul"),
             selectedTheme.text
         );
-        applyStyles(document.querySelectorAll("div, section,body"), selectedTheme.text);
+        applyStyles(document.querySelectorAll("div, section, body"), selectedTheme.text);
 
         // Select <a> and all its child elements
         const linksAndChildren = [];
@@ -90,6 +93,7 @@ export default function contrastChanger() {
         applyStyles(linksAndChildren, selectedTheme.link);
 
         applyStyles(document.querySelectorAll("input, button"), selectedTheme.input);
+        console.log(`Applied ${contrastType} styles`);
     }
 
     // Observe changes to dynamically styled elements
@@ -97,6 +101,8 @@ export default function contrastChanger() {
         mutations.forEach((mutation) => {
             mutation.addedNodes.forEach((node) => {
                 if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'IFRAME') {
+                    console.log(`New node added:`, node);  // Debugging log
+
                     // Apply styles dynamically to added elements
                     if (node.matches("a")) {
                         const linkWithChildren = [node, ...node.querySelectorAll("*")];
