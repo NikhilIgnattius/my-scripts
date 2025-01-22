@@ -3,7 +3,6 @@ import { highlightLinks } from "./highlightLinks.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   createWidget();
-  addAccessibilityButton();
 });
 
 function print(message) {
@@ -98,45 +97,18 @@ function createWidget() {
   features.forEach(feature => {
     let featureDiv = document.createElement("div");
     featureDiv.className = "feature";
-    featureDiv.innerHTML = feature.svg;
-    let text = document.createElement("p");
-    text.textContent = feature.text;
-    featureDiv.appendChild(text);
-
+    featureDiv.innerHTML = feature.svg + `<p>${feature.text}</p>`;
     featureDiv.addEventListener("click", feature.action);
-
     mainDiv.appendChild(featureDiv);
   });
 
   widget.appendChild(mainDiv);
   document.body.appendChild(widget);
-}
 
-function addAccessibilityButton() {
-  const accessibilityButton = document.createElement("button");
-  accessibilityButton.textContent = "Accessibility Menu";
-  accessibilityButton.style.position = "fixed";
-  accessibilityButton.style.bottom = "20px";
-  accessibilityButton.style.right = "20px";
-  accessibilityButton.style.padding = "10px 20px";
-  accessibilityButton.style.backgroundColor = "#006be6";
-  accessibilityButton.style.color = "white";
-  accessibilityButton.style.border = "none";
-  accessibilityButton.style.borderRadius = "5px";
-  accessibilityButton.style.cursor = "pointer";
-
-  accessibilityButton.addEventListener("click", () => {
-    const widget = document.querySelector(".widget");
-    if (widget.style.display === "none" || widget.style.opacity === "0") {
-      widget.style.display = "block";
-      widget.style.opacity = "1";
-      widget.style.transform = "translateX(0)";
-    } else {
-      widget.style.opacity = "0";
-      widget.style.transform = "translateX(100%)";
-      setTimeout(() => widget.style.display = "none", 300);  // Hide after animation
-    }
-  });
-
-  document.body.appendChild(accessibilityButton);
+  // Add widget animation
+  setTimeout(() => {
+    widget.style.display = "block";
+    widget.style.opacity = 1;
+    widget.style.transform = "translateX(0)";
+  }, 100);
 }
