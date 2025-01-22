@@ -33,6 +33,7 @@ function accessibilityButton() {
   // Creating the iframe
   const iframe = document.createElement("iframe");
   iframe.style.display = "none"; // Initially hidden
+  iframe.style.height = "100vh";
   iframe.src = "./widget.html"
   document.body.appendChild(iframe);
 
@@ -44,6 +45,9 @@ function accessibilityButton() {
   accessibilityButton.addEventListener("click", () => {
     isIframeVisible = !isIframeVisible;
     iframe.style.display = isIframeVisible ? "block" : "none";
+    iframe.style.position = "fixed";
+    iframe.style.top = "0px";
+    iframe.style.right = "0px";
   });
 }
 
