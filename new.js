@@ -1,93 +1,114 @@
+// Importing necessary modules
+import { contrastChanger } from "./contrastChanger.js";
+import { highlightLinks } from "./highlightLinks.js";
+
+// Event Listener for DOM Content Loaded
 document.addEventListener("DOMContentLoaded", accessibilityButton);
 
+// Utility Function to Print Messages
+function print(message) {
+  console.log(message);
+}
+
+// Main Function to Handle Accessibility Button and Widget
 function accessibilityButton() {
-  // Create a style element for styling
   const style = document.createElement("style");
   document.head.appendChild(style);
   const sheet = style.sheet;
 
-  // Add external font link for styling
+  // Adding CSS rules dynamically
+  const cssRules = [
+    `.accessibility-button { height: 50px; width: 50px; position: fixed; right: 20px; bottom: 30px; z-index: 99999; transition: 0.3s; }`,
+    `.accessibility-button:hover { transform: scale(1.2); }`,
+    `.widget { position: fixed; background-color: #006be6; width: 30em; height: 100vh; padding-top: 2em; right: 0; top: 0; font-family: 'Poppins', serif; display: none; opacity: 0; transform: translateX(100%); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 99998; overflow-y: auto; border-radius: 16px 0 0 16px; }`,
+    `.widget-title { color: white; font-size: 1.5rem; margin: 0em 1em 1em; }`,
+    `.main-div { background-color: #eff1f5; width: 100%; height: 100vh; border-radius: 16px 16px 0 0; padding: 1em; gap: 0.5em; box-sizing: border-box; display: flex; flex-wrap: wrap; justify-content: space-between; align-content: flex-start; }`,
+    `.feature { background-color: white; padding: 1em; margin: 1em 0; border-radius: 16px; text-align: center; border: 2px solid transparent; width: calc(50% - 0.5em); transition: border 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 8em; box-sizing: border-box; }`,
+    `.feature:hover { border: 2px solid #006be6; }`,
+    `.feature svg { width: 2.5rem; height: 2.5rem; margin-bottom: 10px; fill: black; }`,
+    `.feature p { font-weight: 300; margin: 0; padding: 0; }`,
+  ];
+
+  cssRules.forEach((rule) => sheet.insertRule(rule, sheet.cssRules.length));
+  console.log("CSS rules added successfully.");
+
+  // Adding Google Font
   const googleFontLink = document.createElement("link");
   googleFontLink.rel = "stylesheet";
-  googleFontLink.href =
-    "https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap";
+  googleFontLink.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap";
   document.head.appendChild(googleFontLink);
 
-  // Create the accessibility button
-  let accessibilityButton = document.createElement("div");
+  // Creating Accessibility Button
+  const accessibilityButton = document.createElement("div");
   accessibilityButton.className = "accessibility-button";
-  accessibilityButton.style.position = "fixed";
-  accessibilityButton.style.bottom = "20px"; // Position from the bottom
-  accessibilityButton.style.right = "20px";  // Position from the right
-  accessibilityButton.style.backgroundColor = "#4CAF50";  // Button color
-  accessibilityButton.style.padding = "15px";  // Button padding
-  accessibilityButton.style.borderRadius = "50%";  // Round shape
-  accessibilityButton.style.cursor = "pointer";  // Cursor style
-  accessibilityButton.style.zIndex = "9999";  // Ensure button is above content
-
-  // Create the logo inside the button
-  let logo = document.createElement("img");
-  logo.src =
-    "https://cdn-icons-png.freepik.com/256/668/668274.png?semt=ais_hybrid";
-  logo.style.width = "50px";  // Set logo size inside the button
-
+  const logo = document.createElement("img");
+  logo.src = "https://cdn-icons-png.freepik.com/256/668/668274.png?semt=ais_hybrid";
+  logo.style.width = "100%";
   accessibilityButton.appendChild(logo);
   document.body.appendChild(accessibilityButton);
 
-  // Initialize widget state
+  // Widget Functionality
   let isWidgetVisible = false;
   let widget = null;
 
-  // Toggle widget visibility on button click
   accessibilityButton.addEventListener("click", () => {
-    if (!widget) {
-      widget = createWidget();  // Create iframe widget only if it doesn't exist
-    }
+    if (!widget) widget = createWidget();
 
-    // Toggle widget visibility
     if (isWidgetVisible) {
-      widget.style.opacity = "0";  // Fade out the widget
-      widget.style.transform = "translateY(100%)";  // Slide widget out (downwards)
+      widget.style.opacity = "0";
+      widget.style.transform = "translateX(100%)";
       setTimeout(() => {
-        widget.style.display = "none";  // Hide widget after animation
+        widget.style.display = "none";
+        enableBackgroundScroll();
       }, 300);
     } else {
-      widget.style.display = "block";  // Show widget
+      widget.style.display = "block";
       setTimeout(() => {
-        widget.style.opacity = "1";  // Fade in the widget
-        widget.style.transform = "translateY(0)";  // Slide widget in (upwards)
+        widget.style.opacity = "1";
+        widget.style.transform = "translateX(0)";
+        disableBackgroundScroll();
       }, 10);
     }
-
-    isWidgetVisible = !isWidgetVisible;  // Update widget state
+    isWidgetVisible = !isWidgetVisible;
   });
 
-  // Create iframe widget content
+  // Creating the Widget
   function createWidget() {
-    const widgetContainer = document.createElement("div");
-    widgetContainer.className = "widget";
-    widgetContainer.style.position = "fixed";
-    widgetContainer.style.bottom = "0";  // Stick to the bottom of the page
-    widgetContainer.style.right = "0";
-    widgetContainer.style.width = "100%";
-    widgetContainer.style.height = "50%";  // Set height to half of the screen
-    widgetContainer.style.backgroundColor = "#fff";
-    widgetContainer.style.zIndex = "10000";
-    widgetContainer.style.transition = "all 0.3s ease";
-    widgetContainer.style.display = "none";  // Initially hidden
-    widgetContainer.style.opacity = "0";  // Initially transparent
-    widgetContainer.style.transform = "translateY(100%)";  // Start from the bottom
+    widget = document.createElement("div");
+    widget.className = "widget";
 
-    // Create iframe inside the widget
-    const iframe = document.createElement("iframe");
-    iframe.src = "https://example.com";  // URL you want to load inside iframe
-    iframe.style.width = "100%";
-    iframe.style.height = "100%";
-    iframe.style.border = "none";
+    const title = document.createElement("p");
+    title.className = "widget-title";
+    title.textContent = "Accessibility Menu";
+    widget.appendChild(title);
 
-    widgetContainer.appendChild(iframe);  // Add iframe to the widget container
-    document.body.appendChild(widgetContainer);  // Add widget to the body
+    const mainDiv = document.createElement("div");
+    mainDiv.className = "main-div";
 
-    return widgetContainer;  // Return the widget container to toggle visibility
+    const features = [
+      { text: "Contrast +", svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18V4a8 8 0 0 1 0 16z"/></svg>`, action: contrastChanger },
+      { text: "Highlight Links", svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.707 5.826L17.172 2.293a1 1 0 0 0-1.414 0L2 16.051 4.415 18.466z"/></svg>`, action: highlightLinks },
+      { text: "Bigger Text", svg: `<svg viewBox="0 0 24 24"><path d="M8 4V20M17 12V20M6 20H10M15 20H19M13 7V4H3V7M21 14V12H13V14" /></svg>`, action: () => print("BIGGER TEXT") },
+    ];
+
+    features.forEach(({ text, svg, action }) => {
+      const featureDiv = document.createElement("div");
+      featureDiv.className = "feature";
+      featureDiv.innerHTML = `${svg}<p>${text}</p>`;
+      featureDiv.addEventListener("click", action);
+      mainDiv.appendChild(featureDiv);
+    });
+
+    widget.appendChild(mainDiv);
+    document.body.appendChild(widget);
+    return widget;
+  }
+
+  function disableBackgroundScroll() {
+    document.body.style.overflow = "hidden";
+  }
+
+  function enableBackgroundScroll() {
+    document.body.style.overflow = "";
   }
 }
