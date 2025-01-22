@@ -7,6 +7,7 @@ export default function contrastChanger() {
     function applyStyles(elements, styles) {
         elements.forEach((element) => {
             // Skip iframe elements
+            console.log(element)
             if (element.tagName === 'IFRAME') return;
 
             for (let property in styles) {
