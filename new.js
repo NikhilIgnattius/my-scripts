@@ -3,6 +3,7 @@ import { highlightLinks } from "./highlightLinks.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   createWidget();
+  addAccessibilityButton();
 });
 
 function print(message) {
@@ -11,10 +12,10 @@ function print(message) {
 
 function createWidget() {
   const style = document.createElement("style");
-
   document.head.appendChild(style);
   const sheet = style.sheet;
 
+  // Add styles for the widget
   sheet.insertRule(
     ".widget { position: fixed; background-color: #006be6; width: 30em; height: 100vh; padding-top: 2em; right: 0; top: 0; font-family: 'Poppins', serif; font-weight: 400; font-style: normal; display: none; opacity: 0; transform: translateX(100%); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 99998; overflow-y: auto; border-radius: 16px 0 0 16px; }",
     sheet.cssRules.length
@@ -44,16 +45,13 @@ function createWidget() {
     sheet.cssRules.length
   );
 
-  console.log("CSS rules added successfully.");
-
   const googleFontLink = document.createElement("link");
   googleFontLink.rel = "stylesheet";
   googleFontLink.href =
     "https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap";
   document.head.appendChild(googleFontLink);
 
-  let widget = null;
-  widget = document.createElement("div");
+  let widget = document.createElement("div");
   widget.className = "widget";
 
   const title = document.createElement("p");
@@ -78,7 +76,7 @@ function createWidget() {
     {
       text: "Bigger Text",
       svg: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 4V20M17 12V20M6 20H10M15 20H19M13 7V4H3V7M21 14V12H13V14" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>`,
-      action: () => biggerText(),
+      action: () => print("Bigger Text Action")
     },
     {
       text: "Text Spacing",
@@ -92,23 +90,53 @@ function createWidget() {
     },
     {
       text: "Hide Images",
-      svg: `<svg width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Edit / Hide"> <path id="Vector" d="M3.99989 4L19.9999 20M16.4999 16.7559C15.1473 17.4845 13.6185 17.9999 11.9999 17.9999C8.46924 17.9999 5.36624 15.5478 3.5868 13.7788C3.1171 13.3119 2.88229 13.0784 2.7328 12.6201C2.62619 12.2933 2.62616 11.7066 2.7328 11.3797C2.88229 10.9214 3.1171 10.688 3.5868 10.221C5.36624 8.45216 8.46924 6.9999 11.9999 6.9999C13.6185 6.9999 15.1473 7.51535 16.4999 8.2449" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> </g> </g></svg>`,
-      action: () => print("HIDE IMAGES")
-    },
+      svg: `<svg width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Edit / Hide"> <path id="Vector" d="M3.99989 4L19.9999 20M16.4999 16.7559C15.1473 17.4845 13.6185 17.9999 11.9999 17.9999C8.46924 17.9999 5.36624 15.5478 3.5868 13.7788C3.1171 13.3119 2.88229 13.0784 2.7328 12.6201C2.62619 12.2933 2.62616 11.7066 2.7328 11.3797C2.88229 10.9214 3.1171 10.688 3.5868 10.221C5.36624 8.45216 8.46924 6.9999 11.9999 6.9999C13.6185 6.9999 15.1473 7.51531 16.4999 8.24406" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></g></svg>`,
+      action: () => print("HIDE IMAGE")
+    }
   ];
 
-  features.forEach((feature) => {
-    const div = document.createElement("div");
-    div.className = "feature";
-    div.innerHTML = feature.svg;
-    const p = document.createElement("p");
-    p.textContent = feature.text;
-    div.appendChild(p);
-    div.addEventListener("click", feature.action);
-    mainDiv.appendChild(div);
+  features.forEach(feature => {
+    let featureDiv = document.createElement("div");
+    featureDiv.className = "feature";
+    featureDiv.innerHTML = feature.svg;
+    let text = document.createElement("p");
+    text.textContent = feature.text;
+    featureDiv.appendChild(text);
+
+    featureDiv.addEventListener("click", feature.action);
+
+    mainDiv.appendChild(featureDiv);
   });
 
   widget.appendChild(mainDiv);
   document.body.appendChild(widget);
 }
 
+function addAccessibilityButton() {
+  const accessibilityButton = document.createElement("button");
+  accessibilityButton.textContent = "Accessibility Menu";
+  accessibilityButton.style.position = "fixed";
+  accessibilityButton.style.bottom = "20px";
+  accessibilityButton.style.right = "20px";
+  accessibilityButton.style.padding = "10px 20px";
+  accessibilityButton.style.backgroundColor = "#006be6";
+  accessibilityButton.style.color = "white";
+  accessibilityButton.style.border = "none";
+  accessibilityButton.style.borderRadius = "5px";
+  accessibilityButton.style.cursor = "pointer";
+
+  accessibilityButton.addEventListener("click", () => {
+    const widget = document.querySelector(".widget");
+    if (widget.style.display === "none" || widget.style.opacity === "0") {
+      widget.style.display = "block";
+      widget.style.opacity = "1";
+      widget.style.transform = "translateX(0)";
+    } else {
+      widget.style.opacity = "0";
+      widget.style.transform = "translateX(100%)";
+      setTimeout(() => widget.style.display = "none", 300);  // Hide after animation
+    }
+  });
+
+  document.body.appendChild(accessibilityButton);
+}
