@@ -1,4 +1,4 @@
-import {contrastChanger} from "./contrastChanger.js";
+import contrastChanger from "./contrastChanger.js";
 
 
 function highlightLinks() {
