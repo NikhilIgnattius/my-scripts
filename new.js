@@ -43,21 +43,33 @@ function accessibilityButton() {
     iframe.style.display = "block";
 
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-      iframeDoc.open();
-      iframeDoc.write(`
-        <html>
-          <head>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
-            <script src="./widget.js" type="module" defer></script>
-          </head>
-          <body>
-          </body>
-        </html>
-      `);
-      iframeDoc.close();
-    }
-    isIframeVisible = !isIframeVisible;
-  });
+    iframeDoc.open();
+    iframeDoc.write(`
+      <html>
+        <head>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
+        </head>
+        <body>
+          <div class="iframe-content">
+            <div>
+              <p>Accessibility Widget Content</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `);
+    iframeDoc.close();
+
+    // Dynamically add the script tag after the content is loaded
+    const script = iframeDoc.createElement("script");
+    script.type = "module"; // Assuming your widget.js is a module
+    script.src = "./widget.js";
+    script.defer = true;
+    iframeDoc.head.appendChild(script);
+  }
+  isIframeVisible = !isIframeVisible;
+});
+
 
 }
 
