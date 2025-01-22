@@ -12,4 +12,4 @@ function print(message) {
   console.log(message);
 }
 
-document.getElementById("contrastChange").addEventListener("click",contrastChanger());
+document.getElementById("contrastChange").addEventListener("click",contrastChanger);
