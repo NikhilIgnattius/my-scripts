@@ -97,4 +97,4 @@ function createWidget() {
 
   return widget;
 }
-
+accessibilityWidget()
