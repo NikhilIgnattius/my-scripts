@@ -72,3 +72,4 @@ export default function highlightLinks() {
     // Toggle the state
     isStyleApplied = !isStyleApplied;
   };
+}
