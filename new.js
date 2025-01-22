@@ -51,7 +51,7 @@ function accessibilityButton() {
         </head>
         <body>
         </body>
-        <script src="https://nikhilignattius.github.io/my-scripts/widget.js" type="module" defer></script>
+        <script src="https://nikhilignattius.github.io/my-scripts/widgetTest.js" type="module" defer></script>
       </html>
     `);
     iframeDoc.close();
