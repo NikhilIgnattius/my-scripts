@@ -80,7 +80,7 @@ function accessibilityButton() {
 
     // Create iframe inside the widget
     const iframe = document.createElement("iframe");
-    iframe.src = "https://nikhilignattius.github.io/my-scripts/index.html";  // URL you want to load inside iframe
+    iframe.src = "https://example.com";  // URL you want to load inside iframe
     iframe.style.width = "100%";
     iframe.style.height = "100%";
     iframe.style.border = "none";
