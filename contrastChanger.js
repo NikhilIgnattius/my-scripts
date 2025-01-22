@@ -109,6 +109,6 @@ export default function contrastChanger() {
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
-  let a = document.getElementByTagName("IFRAME");
+  let a = document.getElementByTagName("iframe");
     console.log(a)
 }
