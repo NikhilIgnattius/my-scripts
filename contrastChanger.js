@@ -1,7 +1,7 @@
 let currentContrastIndex = -1;  // Start from the first contrast mode
 const contrastModes = ["Invert", "Dark", "Light", "Reset"];
 
-export default function contrastChanger() {
+export function contrastChanger() {
     currentContrastIndex = (currentContrastIndex+1) % contrastModes.length;
     console.log(currentContrastIndex)
   function applyStyles(elements, styles) {
