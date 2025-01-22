@@ -1,3 +1,4 @@
+import {contrastChange} from "./contrastChanger.js";
 function contrastChanger() {
   console.log("Contrast increased.");
 }
