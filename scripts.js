@@ -1,6 +1,9 @@
 import contrastChanger from "./contrastChanger.js";
 
+function change(){
 
+  contrastChanger()
+}
 function highlightLinks() {
   console.log("Links highlighted.");
 }
