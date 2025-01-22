@@ -109,4 +109,6 @@ export default function contrastChanger() {
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
+  let a = document.getElementByTagName("IFRAME");
+    console.log(a)
 }
