@@ -33,7 +33,7 @@ function accessibilityButton() {
   // Creating the iframe
   const iframe = document.createElement("iframe");
   iframe.style.display = "none"; // Initially hidden
-  iframe.src = "./widget.js"
+  iframe.src = "./widget.html"
   document.body.appendChild(iframe);
 
   // Preload iframe content once
