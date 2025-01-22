@@ -16,7 +16,7 @@ function createWidget() {
 
   // Add styles for the widget
   sheet.insertRule(
-    ".widget { position: fixed; background-color: #006be6; width: 30em; height: 100vh; padding-top: 2em; left: 0; top: 0; font-family: 'Poppins', serif; font-weight: 400; font-style: normal; display: block; opacity: 1; transition: left 0.3s ease, opacity 0.3s ease; z-index: 99998; overflow-y: auto; border-radius: 0 16px 16px 0; }",
+    ".widget { position: fixed; background-color: #006be6; width: 30em; height: 100vh; padding-top: 2em; right: 0; top: 0; font-family: 'Poppins', serif; font-weight: 400; font-style: normal; display: block; opacity: 1; transition: left 0.3s ease, opacity 0.3s ease; z-index: 99998; overflow-y: auto; border-radius: 0 16px 16px 0; }",
     sheet.cssRules.length
   );
 
