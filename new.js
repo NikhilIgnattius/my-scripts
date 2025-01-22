@@ -1,6 +1,3 @@
-// import { contrastChanger } from "./contrastChanger.js";
-// import { highlightLinks } from "./highlightLinks.js";
-
 document.addEventListener("DOMContentLoaded", initializeWidget);
 
 function initializeWidget() {
@@ -100,9 +97,14 @@ function initializeWidget() {
   iframe.style.width = "100%";
   iframe.style.height = "100vh";
   iframe.style.border = "none";
-  iframe.src = "https://nikhilignattius.github.io/my-scripts/index.html"
+  iframe.src = "https://nikhilignattius.github.io/my-scripts/index.html";
   document.body.appendChild(iframe);
-  iframe.contentWindow.document.body.appendChild(widget);
 
-  
+  iframe.onload = () => {
+    if (iframe.contentWindow && iframe.contentWindow.document.body) {
+      iframe.contentWindow.document.body.appendChild(widget);
+    } else {
+      console.error("Failed to access iframe content.");
+    }
+  };
 }
