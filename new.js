@@ -100,10 +100,9 @@ function initializeWidget() {
   iframe.style.width = "100%";
   iframe.style.height = "100vh";
   iframe.style.border = "none";
-  // iframe.src = "https://nikhilignattius.github.io/my-scripts/index.html"
-  
-  document.body.appendChild(iframe);
+  iframe.src = "https://nikhilignattius.github.io/my-scripts/index.html"
   iframe.contentWindow.document.body.appendChild(widget);
+  document.body.appendChild(iframe);
 
   
 }
