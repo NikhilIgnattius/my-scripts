@@ -32,8 +32,6 @@ function accessibilityButton() {
 
   // Creating the iframe
   const iframe = document.createElement("iframe");
-  iframe.style.display = "none"; // Initially hidden
-  iframe.style.height = "100vh";
   iframe.src = "./widget.html"
   document.body.appendChild(iframe);
 
