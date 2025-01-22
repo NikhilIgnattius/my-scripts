@@ -17,9 +17,10 @@ function createWidget() {
 
   // Add styles for the widget
   sheet.insertRule(
-    ".widget { position: fixed; background-color: #006be6; width: 30em; height: 100vh; padding-top: 2em; right: -100%; top: 0; font-family: 'Poppins', serif; font-weight: 400; font-style: normal; display: block; opacity: 1; transition: right 0.3s ease, opacity 0.3s ease; z-index: 99998; overflow-y: auto; border-radius: 16px 0 0 16px; }",
-    sheet.cssRules.length
-  );
+  ".widget { position: fixed; background-color: #006be6; width: 30em; height: 100vh; padding-top: 2em; left: -100%; top: 0; font-family: 'Poppins', serif; font-weight: 400; font-style: normal; display: block; opacity: 1; transition: left 0.3s ease, opacity 0.3s ease; z-index: 99998; overflow-y: auto; border-radius: 0 16px 16px 0; }",
+  sheet.cssRules.length
+);
+
   sheet.insertRule(
     ".widget-title { color: white; font-size: 1.5rem; margin: 0em 1em 1em; }",
     sheet.cssRules.length
@@ -126,13 +127,14 @@ function addAccessibilityButton() {
   accessibilityButton.style.cursor = "pointer";
 
   accessibilityButton.addEventListener("click", () => {
-    const widget = document.querySelector(".widget");
-    if (widget.style.right === "0px") {
-      widget.style.right = "-100%";  // Slide the widget out of view
-    } else {
-      widget.style.right = "0";  // Slide the widget into view
-    }
-  });
+  const widget = document.querySelector(".widget");
+  if (widget.style.left === "0px") {
+    widget.style.left = "-100%";  // Slide the widget out of view
+  } else {
+    widget.style.left = "0";  // Slide the widget into view
+  }
+});
+
 
   document.body.appendChild(accessibilityButton);
 }
