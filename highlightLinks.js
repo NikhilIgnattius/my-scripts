@@ -1,4 +1,4 @@
-export default function highlightLinks() {
+export function highlightLinks() {
   let isStyleApplied = false; // State to track if styles are currently applied
 
   const toggleStyles = () => {
