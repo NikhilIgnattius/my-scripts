@@ -6,7 +6,7 @@ export default function contrastChanger() {
 
     function applyStyles(elements, styles) {
         elements.forEach((element) => {
-            // Skip iframe elements
+            // Skip iframe elements and their content
             if (element.tagName === 'IFRAME') return;
 
             console.log(`Applying styles to:`, element);  // Debugging log
@@ -19,7 +19,7 @@ export default function contrastChanger() {
     function resetStyles() {
         const allElements = document.querySelectorAll("*");
         allElements.forEach((element) => {
-            // Skip iframe elements
+            // Skip iframe elements and their content
             if (element.tagName === 'IFRAME') return;
 
             element.style.removeProperty("color");
@@ -121,4 +121,20 @@ export default function contrastChanger() {
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
+
+    // Now, exclude the content inside iframe as well by applying styles to the document within each iframe
+    const iframes = document.querySelectorAll("iframe");
+    iframes.forEach((iframe) => {
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        if (iframeDocument) {
+            // Reset styles inside iframe
+            const iframeElements = iframeDocument.querySelectorAll("*");
+            iframeElements.forEach((element) => {
+                element.style.removeProperty("color");
+                element.style.removeProperty("background-color");
+                element.style.removeProperty("border-color");
+            });
+            iframeDocument.querySelector("html").style.removeProperty("filter");
+        }
+    });
 }
