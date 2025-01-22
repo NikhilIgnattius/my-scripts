@@ -32,32 +32,30 @@ function accessibilityButton() {
 
   // Creating the iframe
   const iframe = document.createElement("iframe");
+  iframe.style.display = "none"; // Initially hidden
   document.body.appendChild(iframe);
 
+  // Preload iframe content once
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+  iframeDoc.open();
+  iframeDoc.write(`
+    <html>
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
+      </head>
+      <body>
+      </body>
+      <script src="https://nikhilignattius.github.io/my-scripts/widgetTest.js" type="module" defer></script>
+    </html>
+  `);
+  iframeDoc.close();
+
+  // Toggle iframe visibility on button click
   let isIframeVisible = false;
-
- accessibilityButton.addEventListener("click", () => {
-  if (isIframeVisible) {
-    iframe.style.display = "none";
-  } else {
-    iframe.style.display = "block";
-
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDoc.open();
-    iframeDoc.write(`
-      <html>
-        <head>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
-        </head>
-        <body>
-        </body>
-        <script src="https://nikhilignattius.github.io/my-scripts/widgetTest.js" type="module" defer></script>
-      </html>
-    `);
-    iframeDoc.close();
-  }
-  isIframeVisible = !isIframeVisible;
-});
+  accessibilityButton.addEventListener("click", () => {
+    isIframeVisible = !isIframeVisible;
+    iframe.style.display = isIframeVisible ? "block" : "none";
+  });
 }
 
 document.addEventListener("DOMContentLoaded", accessibilityButton);
