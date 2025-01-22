@@ -105,3 +105,4 @@ function initializeWidget() {
 
   iframe.contentWindow.document.body.appendChild(widget);
 }
+initalizeWidget()
