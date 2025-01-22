@@ -43,32 +43,39 @@ function accessibilityButton() {
     iframe.style.display = "block";
 
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    // Clear the iframe document first
     iframeDoc.open();
-    iframeDoc.write(`
-      <html>
-        <head>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
-        </head>
-        <body>
-          <div class="iframe-content">
-            <div>
-              <p>Accessibility Widget Content</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `);
     iframeDoc.close();
 
-    // Dynamically add the script tag after the content is loaded
+    // Add HTML structure dynamically
+    const head = iframeDoc.createElement("head");
+    const link = iframeDoc.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap";
+    head.appendChild(link);
+    iframeDoc.documentElement.appendChild(head);
+
+    const body = iframeDoc.createElement("body");
+    body.innerHTML = `
+      <div class="iframe-content">
+        <div>
+          <p>Accessibility Widget Content</p>
+        </div>
+      </div>
+    `;
+    iframeDoc.documentElement.appendChild(body);
+
+    // Dynamically add the script
     const script = iframeDoc.createElement("script");
-    script.type = "module"; // Assuming your widget.js is a module
+    script.type = "module";
     script.src = "./widget.js";
     script.defer = true;
-    iframeDoc.head.appendChild(script);
+    head.appendChild(script); // Append to the head after it's properly created
   }
   isIframeVisible = !isIframeVisible;
 });
+
 
 
 }
