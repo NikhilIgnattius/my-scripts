@@ -50,18 +50,9 @@ function accessibilityButton() {
         <html>
           <head>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
-            <style>
-              body { margin: 0; font-family: 'Poppins', serif; }
-              .iframe-content { display: flex; justify-content: center; align-items: center; height: 100%; background-color: #eff1f5; }
-              .iframe-content div { width: 80%; padding: 1em; background-color: white; border-radius: 16px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: center; }
-            </style>
+            <script src="./widget.js" defer></script>
           </head>
           <body>
-            <div class="iframe-content">
-              <div>
-                <p>Accessibility Menu Inside iFrame</p>
-              </div>
-            </div>
           </body>
         </html>
       `);
