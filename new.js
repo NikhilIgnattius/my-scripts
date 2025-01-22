@@ -3,7 +3,6 @@ import { highlightLinks } from "./highlightLinks.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   createWidget();
-  addAccessibilityButton();
 });
 
 function print(message) {
@@ -17,9 +16,9 @@ function createWidget() {
 
   // Add styles for the widget
   sheet.insertRule(
-  ".widget { position: fixed; background-color: #006be6; width: 30em; height: 100vh; padding-top: 2em; left: -100%; top: 0; font-family: 'Poppins', serif; font-weight: 400; font-style: normal; display: block; opacity: 1; transition: left 0.3s ease, opacity 0.3s ease; z-index: 99998; overflow-y: auto; border-radius: 0 16px 16px 0; }",
-  sheet.cssRules.length
-);
+    ".widget { position: fixed; background-color: #006be6; width: 30em; height: 100vh; padding-top: 2em; left: 0; top: 0; font-family: 'Poppins', serif; font-weight: 400; font-style: normal; display: block; opacity: 1; transition: left 0.3s ease, opacity 0.3s ease; z-index: 99998; overflow-y: auto; border-radius: 0 16px 16px 0; }",
+    sheet.cssRules.length
+  );
 
   sheet.insertRule(
     ".widget-title { color: white; font-size: 1.5rem; margin: 0em 1em 1em; }",
@@ -86,55 +85,24 @@ function createWidget() {
     },
     {
       text: "Pause Animations",
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M8 3h4v18H8zm8 0h4v18h-4z"/></svg>`,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M8 3h4v18H8zm8 3h4v18h-4z"/></svg>`,
       action: () => print("PAUSE ANIMATION")
     },
     {
       text: "Hide Images",
-      svg: `<svg width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Edit / Hide"> <path id="Vector" d="M3.99989 4L19.9999 20M16.4999 16.7559C15.1473 17.4845 13.6185 17.9999 11.9999 17.9999C8.46924 17.9999 5.36624 15.5478 3.5868 13.7788C3.1171 13.3119 2.88229 13.0784 2.7328 12.6201C2.62619 12.2933 2.62616 11.7066 2.7328 11.3797C2.88229 10.9214 3.1171 10.688 3.5868 10.221C5.36624 8.45216 8.46924 6.9999 11.9999 6.9999C13.6185 6.9999 15.1473 7.51531 16.4999 8.24406" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></g></svg>`,
-      action: () => print("HIDE IMAGE")
+      svg: `<svg width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Edit / Hide"> <path id="Vector" d="M3.99989 4L19.9999 20M16.4999 16.7559C15.1473 17.4845 13.6185 17.9999 11.9999 17.9999C8.46924 17.9999 5.36624 15.5478 3.5868 13.7788C3.1171 13.3119 2.88229 13.0784 2.7328 12.6201C2.62619 12.2933 2.62616 11.7066 2.7328 11.3797C2.88229 10.9214 3.1171 10.688 3.5868 10.221C5.36624 8.452 8.46924 6 11.9999 6C13.6185 6 15.1473 6.51541 16.4999 7.24404M7.58589 8.34306C6.61309 9.15491 5.69149 10.0563 4.99989 10.7789M14.7071 15.4142C14.0774 15.8048 13.3777 15.9999 11.9999 15.9999C9.75079 15.9999 8.13479 13.8849 7.58589 13.0869M21.9999 12.6201C21.8495 13.0784 21.6147 13.3119 21.145 13.7788C20.5207 14.3851 19.7912 15.0318 18.9999 15.6489M14.5859 7.41309C15.4355 8.04945 16.2937 8.82601 17.0009 9.55693M12.9999 10.9999C13.5522 10.9999 13.9999 10.5522 13.9999 9.99993C13.9999 9.44766 13.5522 8.99993 12.9999 8.99993C12.4476 8.99993 11.9999 9.44766 11.9999 9.99993C11.9999 10.5522 12.4476 10.9999 12.9999 10.9999Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>`,
+      action: () => print("HIDE IMAGES")
     }
   ];
 
-  features.forEach(feature => {
-    let featureDiv = document.createElement("div");
+  features.forEach((feature) => {
+    const featureDiv = document.createElement("div");
     featureDiv.className = "feature";
-    featureDiv.innerHTML = feature.svg;
-    let text = document.createElement("p");
-    text.textContent = feature.text;
-    featureDiv.appendChild(text);
-
+    featureDiv.innerHTML = `${feature.svg}<p>${feature.text}</p>`;
     featureDiv.addEventListener("click", feature.action);
-
     mainDiv.appendChild(featureDiv);
   });
 
   widget.appendChild(mainDiv);
   document.body.appendChild(widget);
-}
-
-function addAccessibilityButton() {
-  const accessibilityButton = document.createElement("button");
-  accessibilityButton.textContent = "Accessibility Menu";
-  accessibilityButton.style.position = "fixed";
-  accessibilityButton.style.bottom = "20px";
-  accessibilityButton.style.right = "20px";
-  accessibilityButton.style.padding = "10px 20px";
-  accessibilityButton.style.backgroundColor = "#006be6";
-  accessibilityButton.style.color = "white";
-  accessibilityButton.style.border = "none";
-  accessibilityButton.style.borderRadius = "5px";
-  accessibilityButton.style.cursor = "pointer";
-
-  accessibilityButton.addEventListener("click", () => {
-  const widget = document.querySelector(".widget");
-  if (widget.style.left === "0px") {
-    widget.style.left = "-100%";  // Slide the widget out of view
-  } else {
-    widget.style.left = "0";  // Slide the widget into view
-  }
-});
-
-
-  document.body.appendChild(accessibilityButton);
 }
