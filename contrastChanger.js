@@ -124,6 +124,7 @@ export default function contrastChanger() {
 
     // Now, exclude the content inside iframe as well by applying styles to the document within each iframe
     const iframes = document.querySelectorAll("iframe");
+    console.log(iframes)
     iframes.forEach((iframe) => {
         const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
         if (iframeDocument) {
