@@ -85,6 +85,12 @@ export default function contrastChanger() {
         // );
         // applyStyles(document.querySelectorAll("div, section, body"), selectedTheme.text);
 
+                            const nestedElements = node.querySelectorAll(
+    ":not(iframe) h1, :not(iframe) h2, :not(iframe) h3, :not(iframe) h4, :not(iframe) h5, :not(iframe) h6, :not(iframe) p, :not(iframe) li, :not(iframe) span, :not(iframe) div, :not(iframe) section, :not(iframe) a, :not(iframe) input, :not(iframe) button"
+);
+
+                    applyStyles(nestedElements, themes[contrastType].text)
+
         // Select <a> and all its child elements
         const linksAndChildren = [];
         document.querySelectorAll("a").forEach((link) => {
@@ -112,9 +118,10 @@ export default function contrastChanger() {
                         applyStyles([node], themes[contrastType].input);
 
                     const nestedElements = node.querySelectorAll(
-                        "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
-                    );
-                    // applyStyles(nestedElements, themes[contrastType].text);
+    ":not(iframe) h1, :not(iframe) h2, :not(iframe) h3, :not(iframe) h4, :not(iframe) h5, :not(iframe) h6, :not(iframe) p, :not(iframe) li, :not(iframe) span, :not(iframe) div, :not(iframe) section, :not(iframe) a, :not(iframe) input, :not(iframe) button"
+);
+
+                    applyStyles(nestedElements, themes[contrastType].text);
                 }
             });
         });
