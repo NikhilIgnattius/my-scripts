@@ -84,7 +84,7 @@ export default function contrastChanger() {
         //     selectedTheme.text
         // );
         // applyStyles(document.querySelectorAll("div, section, body"), selectedTheme.text);
-
+const node = document;
                             const nestedElements = node.querySelectorAll(
     ":not(iframe) h1, :not(iframe) h2, :not(iframe) h3, :not(iframe) h4, :not(iframe) h5, :not(iframe) h6, :not(iframe) p, :not(iframe) li, :not(iframe) span, :not(iframe) div, :not(iframe) section, :not(iframe) a, :not(iframe) input, :not(iframe) button"
 );
@@ -97,7 +97,7 @@ export default function contrastChanger() {
             linksAndChildren.push(link, ...link.querySelectorAll(":not(iframe) *"));
         });
         // applyStyles(linksAndChildren, selectedTheme.link);
-
+const node = document;
           const nestedElements = node.querySelectorAll(
     ":not(iframe) h1, :not(iframe) h2, :not(iframe) h3, :not(iframe) h4, :not(iframe) h5, :not(iframe) h6, :not(iframe) p, :not(iframe) li, :not(iframe) span, :not(iframe) div, :not(iframe) section, :not(iframe) a, :not(iframe) input, :not(iframe) button"
 );
