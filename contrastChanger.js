@@ -114,7 +114,7 @@ export default function contrastChanger() {
                     const nestedElements = node.querySelectorAll(
                         "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
                     );
-                    applyStyles(nestedElements, themes[contrastType].text);
+                    // applyStyles(nestedElements, themes[contrastType].text);
                 }
             });
         });
