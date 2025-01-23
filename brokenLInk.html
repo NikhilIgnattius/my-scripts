@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Broken Link Checker</title>
+</head>
+
+<body>
+    <h2>Multiple Broken Link Checker</h2>
+
+    <!-- Input form for multiple URLs (one per line) -->
+    <label for="urlsInput">Enter URLs (one per line):</label><br>
+    <textarea id="urlsInput" rows="8" cols="50" placeholder="Enter each URL on a new line"></textarea><br><br>
+    <button onclick="checkMultipleLinks()">Check Links</button>
+
+    <!-- Area to display the results -->
+    <div id="results"></div>
+
+    <script>
+        // Function to check multiple links
+        async function checkMultipleLinks() {
+            const urlsText = document.getElementById('urlsInput').value.trim(); // Get input
+            const resultElement = document.getElementById('results'); // Element to display results
+
+            // Clear previous results
+            resultElement.innerHTML = '';
+
+            // Check if there are any URLs entered
+            if (!urlsText) {
+                resultElement.textContent = 'Please enter at least one URL.';
+                return;
+            }
+
+            // Split the input text by newlines to get an array of URLs
+            const urls = urlsText.split('\n').map(url => url.trim()).filter(url => url.length > 0);
+
+            // If there are no valid URLs after splitting, prompt the user
+            if (urls.length === 0) {
+                resultElement.textContent = 'Please enter valid URLs.';
+                return;
+            }
+
+            // Loop through each URL and check it
+            for (let url of urls) {
+                await checkBrokenLink(url, resultElement);
+            }
+        }
+
+        // Function to check if a single link is broken
+        async function checkBrokenLink(url, resultElement) {
+            const resultItem = document.createElement('p'); // Create a new paragraph for each result
+            try {
+                const response = await fetch(url, { method: 'HEAD' }); // Perform HEAD request
+
+                // Display the result based on the status
+                if (response.ok) {
+                    resultItem.textContent = `${url} is working fine!`;
+                    resultItem.style.color = 'green';
+                } else {
+                    resultItem.textContent = `${url} is broken (Status: ${response.status})`;
+                    resultItem.style.color = 'red';
+                }
+            } catch (error) {
+                // If an error occurs (like network issues), treat it as broken
+                resultItem.textContent = `${url} is broken (Error: ${error.message})`;
+                resultItem.style.color = 'red';
+            }
+
+            resultElement.appendChild(resultItem); // Append result to the results section
+        }
+    </script>
+</body>
+
+</html>
