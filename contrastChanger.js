@@ -85,9 +85,11 @@ export default function contrastChanger() {
         // );
         // applyStyles(document.querySelectorAll("div, section, body"), selectedTheme.text);
 let node1 = document;
-                            let nestedElements = node1.querySelectorAll(
-     "h1, h2, h3,  h4, h5, h6, p, li, span, div, section, a, input, button"
+                           const nestedElements = document.querySelectorAll(
+    "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
+console.log(nestedElements); // Check if it's empty
+
 
                     applyStyles(nestedElements, themes[contrastType].text)
 
@@ -98,9 +100,11 @@ let node1 = document;
         });
         // applyStyles(linksAndChildren, selectedTheme.link);
 let node2 = document;
-        nestedElements = node2.querySelectorAll(
-     "h1, h2, h3,  h4, h5, h6, p, li, span, div, section, a, input, button"
+        const nestedElements = document.querySelectorAll(
+    "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
+console.log(nestedElements); // Check if it's empty
+
 
                     applyStyles(nestedElements, themes[contrastType].text);
         applyStyles(document.querySelectorAll("input, button"), selectedTheme.input);
@@ -122,9 +126,10 @@ let node2 = document;
                     if (node.matches("input, button"))
                         applyStyles([node], themes[contrastType].input);
 let node3 = document;
-                    nestedElements = node3.querySelectorAll(
-    "h1, h2, h3,  h4, h5, h6, p, li, span, div, section, a, input, button"
+                   const nestedElements = document.querySelectorAll(
+    "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
+console.log(nestedElements); // Check if it's empty
 
                     applyStyles(nestedElements, themes[contrastType].text);
                 }
