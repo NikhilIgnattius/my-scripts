@@ -94,7 +94,7 @@ let node1 = document;
         // Select <a> and all its child elements
         const linksAndChildren = [];
         document.querySelectorAll(":not(iframe) a").forEach((link) => {
-            linksAndChildren.push(link, ...link.querySelectorAll(":not(iframe) *"));
+            linksAndChildren.push(link, ...link.querySelectorAll("*"));
         });
         // applyStyles(linksAndChildren, selectedTheme.link);
 let node2 = document;
