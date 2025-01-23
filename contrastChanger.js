@@ -5,16 +5,31 @@ export default function contrastChanger() {
     currentContrastIndex = (currentContrastIndex + 1) % contrastModes.length;
 
     function applyStyles(elements, styles) {
-        elements.forEach((element) => {
-            // Skip iframe elements and their content
-            if (element.tagName === 'IFRAME') return;
+    elements.forEach((element) => {
+        // Check if the element or its ancestors are inside an iframe
+        let currentElement = element;
+        let insideIframe = false;
 
-            console.log(`Applying styles to:`, element);  // Debugging log
+        while (currentElement) {
+            if (currentElement.tagName === "IFRAME") {
+                insideIframe = true;
+                break;
+            }
+            currentElement = currentElement.parentNode;
+        }
+
+        // If inside an iframe, skip; otherwise, apply styles
+        if (insideIframe) {
+            console.log(`Skipping element inside iframe:`, element);
+        } else {
+            console.log(`Applying styles to element outside iframe:`, element);
             for (let property in styles) {
                 element.style.setProperty(property, styles[property], "important");
             }
-        });
-    }
+        }
+    });
+}
+
 
     function resetStyles() {
         const allElements = document.querySelectorAll("*");
