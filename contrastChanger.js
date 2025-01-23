@@ -79,11 +79,11 @@ export default function contrastChanger() {
         const selectedTheme = themes[contrastType];
 
         // Apply styles to elements
-        applyStyles(
-            document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, li, span, ul"),
-            selectedTheme.text
-        );
-        applyStyles(document.querySelectorAll(""), selectedTheme.text);
+        // applyStyles(
+        //     document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, li, span, ul"),
+        //     selectedTheme.text
+        // );
+        // applyStyles(document.querySelectorAll("div, section, body"), selectedTheme.text);
 
         // Select <a> and all its child elements
         const linksAndChildren = [];
