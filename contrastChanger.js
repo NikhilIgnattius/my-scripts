@@ -100,7 +100,7 @@ export default function contrastChanger() {
         // );
         // applyStyles(document.querySelectorAll("div, section, body"), selectedTheme.text);
 let node1 = document;
-                           const nestedElements = document.querySelectorAll(
+                           nestedElements = document.querySelectorAll(
     "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
 console.log(nestedElements); // Check if it's empty
@@ -115,7 +115,7 @@ console.log(nestedElements); // Check if it's empty
         });
         // applyStyles(linksAndChildren, selectedTheme.link);
 let node2 = document;
-        const nestedElements = document.querySelectorAll(
+        nestedElements = document.querySelectorAll(
     "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
 console.log(nestedElements); // Check if it's empty
@@ -141,7 +141,7 @@ console.log(nestedElements); // Check if it's empty
                     if (node.matches("input, button"))
                         applyStyles([node], themes[contrastType].input);
 let node3 = document;
-                   const nestedElements = document.querySelectorAll(
+                   nestedElements = document.querySelectorAll(
     "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
 console.log(nestedElements); // Check if it's empty
