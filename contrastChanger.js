@@ -94,7 +94,7 @@ export default function contrastChanger() {
         // Select <a> and all its child elements
         const linksAndChildren = [];
         document.querySelectorAll(":not(iframe) a").forEach((link) => {
-            linksAndChildren.push(link, ...link.querySelectorAll("*"));
+            linksAndChildren.push(link, ...link.querySelectorAll(":not(iframe) *"));
         });
         applyStyles(linksAndChildren, selectedTheme.link);
 
