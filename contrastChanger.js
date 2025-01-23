@@ -103,7 +103,7 @@ export default function contrastChanger() {
 );
 
                     applyStyles(nestedElements, themes[contrastType].text);
-        applyStyles(document.querySelectorAll("input, button"), selectedTheme.input);
+        // applyStyles(document.querySelectorAll("input, button"), selectedTheme.input);
         console.log(`Applied ${contrastType} styles`);
     }
 
