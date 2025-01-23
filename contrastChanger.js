@@ -100,13 +100,13 @@ export default function contrastChanger() {
         // );
         // applyStyles(document.querySelectorAll("div, section, body"), selectedTheme.text);
 let node1 = document;
-                          var nestedElements = document.querySelectorAll(
+                          let addedElements1 = document.querySelectorAll(
     "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
-console.log(nestedElements); // Check if it's empty
+console.log(addedElements1); // Check if it's empty
 
 
-                    applyStyles(nestedElements, themes[contrastType].text)
+                    applyStyles(addedElements1, themes[contrastType].text)
 
         // Select <a> and all its child elements
         const linksAndChildren = [];
@@ -115,13 +115,13 @@ console.log(nestedElements); // Check if it's empty
         });
         // applyStyles(linksAndChildren, selectedTheme.link);
 let node2 = document;
-       var nestedElements = document.querySelectorAll(
+       let addedElements2 = document.querySelectorAll(
     "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
-console.log(nestedElements); // Check if it's empty
+console.log(addedElements2); // Check if it's empty
 
 
-                    applyStyles(nestedElements, themes[contrastType].text);
+                    applyStyles(addedElements2, themes[contrastType].text);
         applyStyles(document.querySelectorAll("input, button"), selectedTheme.input);
         console.log(`Applied ${contrastType} styles`);
     }
@@ -141,12 +141,12 @@ console.log(nestedElements); // Check if it's empty
                     if (node.matches("input, button"))
                         applyStyles([node], themes[contrastType].input);
 let node3 = document;
-                  var nestedElements = document.querySelectorAll(
+                  let addedElements3 = document.querySelectorAll(
     "h1, h2, h3, h4, h5, h6, p, li, span, div, section, a, input, button"
 );
-console.log(nestedElements); // Check if it's empty
+console.log(addedElements3); // Check if it's empty
 
-                    applyStyles(nestedElements, themes[contrastType].text);
+                    applyStyles(addedElements3, themes[contrastType].text);
                 }
             });
         });
