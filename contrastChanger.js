@@ -93,7 +93,7 @@ export default function contrastChanger() {
 
         // Select <a> and all its child elements
         const linksAndChildren = [];
-        document.querySelectorAll("a").forEach((link) => {
+        document.querySelectorAll(":not(iframe) a").forEach((link) => {
             linksAndChildren.push(link, ...link.querySelectorAll("*"));
         });
         applyStyles(linksAndChildren, selectedTheme.link);
@@ -111,7 +111,7 @@ export default function contrastChanger() {
 
                     // Apply styles dynamically to added elements
                     if (node.matches("a")) {
-                        const linkWithChildren = [node, ...node.querySelectorAll("*")];
+                        const linkWithChildren = [node, ...node.querySelectorAll(":not(iframe) *")];
                         applyStyles(linkWithChildren, themes[contrastType].link);
                     }
                     if (node.matches("input, button"))
