@@ -2,7 +2,7 @@ export function highlightLinks() {
   let isStyleApplied = false; 
 
   const toggleStyles = () => {
-    const allLinks = document.querySelectorAll(":not(iframe) i"); // Update the list of links dynamically
+    const allLinks = document.querySelectorAll("a"); // Update the list of links dynamically
 
     if (isStyleApplied) {
       // Reset styles
