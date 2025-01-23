@@ -96,14 +96,14 @@ export default function contrastChanger() {
         document.querySelectorAll(":not(iframe) a").forEach((link) => {
             linksAndChildren.push(link, ...link.querySelectorAll(":not(iframe) *"));
         });
-        // applyStyles(linksAndChildren, selectedTheme.link);
+        applyStyles(linksAndChildren, selectedTheme.link);
 
           const nestedElements = node.querySelectorAll(
     ":not(iframe) h1, :not(iframe) h2, :not(iframe) h3, :not(iframe) h4, :not(iframe) h5, :not(iframe) h6, :not(iframe) p, :not(iframe) li, :not(iframe) span, :not(iframe) div, :not(iframe) section, :not(iframe) a, :not(iframe) input, :not(iframe) button"
 );
 
                     applyStyles(nestedElements, themes[contrastType].text);
-        // applyStyles(document.querySelectorAll("input, button"), selectedTheme.input);
+        applyStyles(document.querySelectorAll("input, button"), selectedTheme.input);
         console.log(`Applied ${contrastType} styles`);
     }
 
