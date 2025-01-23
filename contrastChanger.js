@@ -297,7 +297,7 @@ export default function contrastChanger() {
 
                     // Apply styles dynamically to added elements
                     if (node.matches("a")) {
-                        const linkWithChildren = [node, ...node.querySelectorAll("*:not(iframe)")];
+                        const linkWithChildren = [node, ...node.querySelectorAll("*:not(iframe) a")];
                         applyStyles(linkWithChildren, themes[contrastType].link);
                     }
                     if (node.matches("input, button")) {
