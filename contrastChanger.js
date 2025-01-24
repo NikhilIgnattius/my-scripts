@@ -186,7 +186,7 @@ export default function contrastChanger() {
             let insideIframe = false;
 
             while (currentElement) {
-                if (currentElement.tagName === "IFRAME") {
+                if (currentElement.tagName == "iframe") {
                     insideIframe = true;
                     break;
                 }
